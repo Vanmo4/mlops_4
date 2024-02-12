@@ -8,4 +8,4 @@ data['date'] = pd.to_datetime(data.index).date
 data['hour'] = pd.to_datetime(data.index).hour
 
 # Запись преобразованных данных
-data.to_csv('/home/igor/mlops_4/datasets/data.csv', index_label='timestamp')
+data.to_csv('/home/ivan/Git/MLOps_HW_3S/mlops_4/datasets/data.csv', index_label='timestamp')

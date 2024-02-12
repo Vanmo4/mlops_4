@@ -21,8 +21,8 @@ mlflow.set_tracking_uri("http://localhost:5000")
 mlflow.set_experiment(f'train_model_{model_name}')
 
 # Чтение данных из CSV-файла в объект DataFrame
-y_train = pd.read_csv('/home/igor/mlops_4/datasets/data_train.csv', index_col='timestamp', parse_dates=True)
-y_test = pd.read_csv('/home/igor/mlops_4/datasets/data_test.csv', index_col='timestamp', parse_dates=True)
+y_train = pd.read_csv('/home/ivan/Git/MLOps_HW_3s/mlops_4/datasets/data_train.csv', index_col='timestamp', parse_dates=True)
+y_test = pd.read_csv('/home/ivan/Git/MLOps_HW_3s/mlops_4/datasets/data_test.csv', index_col='timestamp', parse_dates=True)
 y_train = y_train.asfreq('H')
 y_test = y_test.asfreq('H')
 
@@ -47,10 +47,10 @@ with mlflow.start_run():
     mlflow.sklearn.log_model(model,  # Логирование модели
                              artifact_path=f"{model_name}_model",
                              registered_model_name=f"{model_name}_model")
-    mlflow.log_artifact(local_path="/home/igor/mlops_4/scripts/train_model.py",
+    mlflow.log_artifact(local_path="/home/ivan/Git/MLOps_HW_3s/mlops_4/scripts/train_model.py",
                         artifact_path="train_model code")  # Логирование кода
     mlflow.end_run()
 
 # Сохранение модели в файл pickle
-with open(f'/home/igor/mlops_4/models/{model_name}_model.pickle', 'wb') as f:
+with open(f'/home/ivan/Git/MLOps_HW_3s/mlops_4/models/{model_name}_model.pickle', 'wb') as f:
     pickle.dump(model, f)

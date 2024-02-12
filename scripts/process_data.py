@@ -3,7 +3,7 @@ import pandas as pd
 
 
 # Чтение данных из CSV-файла в объект DataFrame
-data = pd.read_csv('/home/igor/mlops_4/datasets/data.csv', index_col='timestamp', parse_dates=True)
+data = pd.read_csv('/home/ivan/Git/MLOps_HW_3s/mlops_4/datasets/data.csv', index_col='timestamp', parse_dates=True)
 
 # Обработка данных
 df = data.groupby('date').sum()
@@ -17,4 +17,4 @@ df_h.hour = pd.to_datetime(df_h.index).hour
 df_h.value = df_h.value.astype('float')
 
 # Запись обработанных данных
-df_h.to_csv('/home/igor/mlops_4/datasets/data_processed.csv', index_label='timestamp')
+df_h.to_csv('/home/ivan/Git/MLOps_HW_3s/mlops_4/datasets/data_processed.csv', index_label='timestamp')

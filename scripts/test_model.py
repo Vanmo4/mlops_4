@@ -21,7 +21,7 @@ mlflow.set_tracking_uri("http://localhost:5000")
 mlflow.set_experiment(f'test_model_{model_name}')
 
 # Чтение данных из CSV-файла в объект DataFrame
-y_test = pd.read_csv('/home/igor/mlops_4/datasets/data_test.csv', index_col='timestamp', parse_dates=True)
+y_test = pd.read_csv('/home/ivan/Git/MLOps_HW_3s/mlops_4/datasets/data_test.csv', index_col='timestamp', parse_dates=True)
 y_test = y_test.asfreq('H')
 
 # Создание объекта ForecastingHorizon с правильной частотой
@@ -38,7 +38,7 @@ else:
     raise ValueError("Invalid model name provided")
 
 # Загрузка модели из файла pickle
-with open(f'/home/igor/mlops_4/models/{model_name}_model.pickle', 'rb') as f:
+with open(f'/home/ivan/Git/MLOps_HW_3s/mlops_4/models/{model_name}_model.pickle', 'rb') as f:
     model = pickle.load(f)
 
 # Работа с MLflow
@@ -48,6 +48,6 @@ with mlflow.start_run():
     smape = MeanAbsolutePercentageError(symmetric = True)
     score = smape(y_test.values, y_pred.values)
     mlflow.log_metric("sMAPE", score)  # Логирование метрики sMAPE
-    mlflow.log_artifact(local_path="/home/igor/mlops_4/scripts/test_model.py",
+    mlflow.log_artifact(local_path="/home/ivan/Git/MLOps_HW_3s/mlops_4/scripts/test_model.py",
                         artifact_path="test_model code")  # Логирование кода
     mlflow.end_run()
